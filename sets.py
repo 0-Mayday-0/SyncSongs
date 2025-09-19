@@ -16,13 +16,15 @@ class CharacterSet:
 
 
 class Line:
-    def __init__(self, sets: list[CharacterSet]) -> None:
+    def __init__(self, sets: list[CharacterSet], delay_between: float) -> None:
         self.sets = sets
+        self.delay_between = delay_between
 
     def print_delay(self):
         for st in self.sets:
             for i in st:
                 print(i, end='', flush=True)
+            tsleep(self.delay_between)
 
 def main() -> None:
     a = Line([CharacterSet("Hello ", 0.2), CharacterSet("World", 0.5)])
