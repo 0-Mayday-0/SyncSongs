@@ -26,6 +26,14 @@ class Song:
                     ],
             2)
 
+        self.chorus_lines: dict[str, list[Line]] = {'made up': [
+                Line([
+                    CharacterSet("\nEverything is made up.\n", 0.1),
+                    CharacterSet("Everything is made up.\n", 0.1),
+                ], 2.5)
+            ]
+        }
+
     @staticmethod
     def async_sound(path):
         threading.Thread(target=playsound, args=(path,), daemon=True).start()
@@ -36,12 +44,19 @@ class Song:
 
         self.intro_line.print_delay()
 
+    def chorus(self):
+        tsleep(0.45)
+
+        for line in self.chorus_lines['made up']:
+            line.print_delay()
+
 
 def main():
     song = Song()
     song.async_sound("./music/exit-enter.mp3")
-    
+
     song.intro()
+    song.chorus()
 
 if __name__ == '__main__':
     main()
