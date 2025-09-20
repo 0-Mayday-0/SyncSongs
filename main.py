@@ -26,12 +26,18 @@ class Song:
                     ],
             2)
 
-        self.chorus_lines: dict[str, list[Line]] = {'made up': [
+        self.chorus_lines: dict[str, Line] = {
+            'made up':
                 Line([
                     CharacterSet("\nEverything is made up.\n", 0.1),
                     CharacterSet("Everything is made up.\n", 0.1),
-                ], 2.5)
-            ]
+                    CharacterSet("Everything belongs to someone else.\n", 0.07),
+                    CharacterSet("And everyone's a world inside themselves.\n", 0.07),
+                ], 2.7),
+            'universe':
+                Line([
+                    CharacterSet("The universe and I both understand", 0.07)
+                ], 2)
         }
 
     @staticmethod
@@ -47,7 +53,7 @@ class Song:
     def chorus(self):
         tsleep(0.45)
 
-        for line in self.chorus_lines['made up']:
+        for key, line in self.chorus_lines.items():
             line.print_delay()
 
 
