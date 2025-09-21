@@ -31,13 +31,14 @@ class Song:
                 Line([
                     CharacterSet("\nEverything is made up.\n", 0.1),
                     CharacterSet("Everything is made up.\n", 0.1),
-                    CharacterSet("Everything belongs to someone else.\n", 0.07),
-                    CharacterSet("And everyone's a world inside themselves.\n", 0.07),
+                    CharacterSet("Everything belongs to someone else.\n", 0.07)
                 ], 2.7),
             'universe':
                 Line([
-                    CharacterSet("The universe and I both understand", 0.07)
-                ], 2)
+                    CharacterSet("And everyone's a world inside themselves.\n", 0.07),
+                    CharacterSet("The universe and I both understand...\n", 0.1),
+                    CharacterSet("...that nothing's more amusing than a plan.\n", 0.7),
+                ], 1.7)
         }
 
     @staticmethod
