@@ -26,44 +26,55 @@ class Song:
                     ],
             2)
 
-        self.chorus_lines: dict[str, Line] = {
+        self.chorus0_lines: dict[str, Line] = {
             'made up':
                 Line([
                     CharacterSet("\nEverything is made up.\n", 0.1),
                     CharacterSet("Everything is made up.\n", 0.1),
+                ], 2.9),
+
+            'someone else':
+                Line([
                     CharacterSet("Everything belongs to someone else.\n", 0.07)
-                ], 2.7),
+                ], 2.3),
             'universe':
                 Line([
                     CharacterSet("And everyone's a world inside themselves.\n", 0.07),
-                    CharacterSet("The universe and I both understand...\n", 0.1),
-                    CharacterSet("...that nothing's more amusing than a plan.\n", 0.7),
-                ], 1.7)
+                    CharacterSet("The universe and I both understand...\n...", 0.08),
+                    CharacterSet("that nothing's more amusing than a plan.\n", 0.08),
+                ], 2),
+
+            'sand':
+                Line([
+                    CharacterSet("Everything gets written in the sand.\n", 0.07),
+                    CharacterSet("So I'll just keep on moving whilst I can.\n\n", 0.07)
+                ], 2.3)
         }
 
     @staticmethod
     def async_sound(path):
         threading.Thread(target=playsound, args=(path,), daemon=True).start()
 
-    def intro(self):
-
+    def intro(self, path):
+        self.async_sound(path)
         tsleep(20.6)
 
         self.intro_line.print_delay()
 
-    def chorus(self):
-        tsleep(0.45)
+    def chorus0(self, path):
+        self.async_sound(path)
+        #tsleep(0.45)
 
-        for key, line in self.chorus_lines.items():
+        for key, line in self.chorus0_lines.items():
             line.print_delay()
 
 
 def main():
     song = Song()
-    song.async_sound("./music/exit-enter.mp3")
+    #song.async_sound("./music/exit-enter.mp3")
 
-    song.intro()
-    song.chorus()
+    song.intro('./music/intro.mp3')
+    song.chorus0('./music/chorus0.mp3')
 
 if __name__ == '__main__':
     main()
